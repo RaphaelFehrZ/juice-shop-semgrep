@@ -14,7 +14,7 @@ jobs:
 
       - name: Run Strix
         env:
-          STRIX_LLM: ${{ secrets.STRIX_LLM }}
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+          STRIX_LLM: ${{ secretsSTRIXLLM }}
+          LLM_API_KEY: ${{ secretsLLMAPIKEY }}
 
         run: strix -n -t ./ --scan-mode quick
