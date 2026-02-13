@@ -1,20 +1,19 @@
-name: strix-penetration-test
+name: Security Scan
 
 on:
   pull_request:
 
 jobs:
-  security-scan:
+  strix-scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
       - name: Install Strix
         run: curl -sSL https://strix.ai/install | bash
 
-      - name: Run Strix
+      - name: Run Security Scan
         env:
-          STRIX_LLM: ${{ secretsSTRIXLLM }}
-          LLM_API_KEY: ${{ secretsLLMAPIKEY }}
-
+          STRIX_LLM: ${{ secrets.STRIX_LLM }}
+          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
         run: strix -n -t ./ --scan-mode quick
